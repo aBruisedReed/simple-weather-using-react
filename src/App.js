@@ -1,24 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Template from './Template';
+import Head from './Head';
+import Main from './Main';
+import Foot from './Foot';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
+
+const theme = {
+  palette: {
+    bg: '#a1a7b5',
+    search: '#548ae9',
+    main: '#393842',
+    box: '#EFF141',
+  }
+};
+
+// 낮밤에 따른 색 조작
+// mainDay: '#393842',
+// boxDay: '#EFF141',
+// mainNight: '#fefffe',
+// boxNight: '#242434'
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background: ${theme.palette.bg};
+  }
+`;
+
 
 function App() {
+  const [toggle, setToggle] = useState(false);
+  const search = () => {
+    setToggle(!toggle);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Template>
+        <Head search={search}></Head>
+        <Main toggle={toggle}></Main>
+        <Foot></Foot>
+      </Template>
+    </ThemeProvider>
   );
 }
 

@@ -1,0 +1,23 @@
+import React from 'react';
+import styled from 'styled-components';
+
+const TemplateBlock = styled.div`
+  width: 360px;
+  height: 360px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -180px 0 0 -180px;
+  background: ${props => props.theme.palette.bgDay};
+  box-shadow: 2px 2px 8px 0 gray;
+`;
+
+function Template({ children }) {
+  return ( 
+    <TemplateBlock>
+      {children}
+    </TemplateBlock>
+  );
+}
+
+export default Template;
