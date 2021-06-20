@@ -71,3 +71,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 openweathermap.org
 
 moment
+
+### 개선사항
+아이템에 id 부여
+api 로딩 중에 로딩화면 띄우기

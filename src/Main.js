@@ -48,7 +48,11 @@ function Main() {
       { !searchToggle ? (
         <div className="weatherBox">
           <div className="weatherIcon">
-            <CurrentWeatherIcon size={55} color={IsDay()?themeContext.palette.main:themeContext.palette.mainNight} code={state.info.weatherCode}></CurrentWeatherIcon>
+            <CurrentWeatherIcon 
+              size={55} 
+              color={IsDay()?themeContext.palette.main:themeContext.palette.mainNight} 
+              code={state.info.weatherCode}>
+            </CurrentWeatherIcon>
           </div>
           <div className="degree">{state.info.degree}°</div>
         </div>

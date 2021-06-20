@@ -90,12 +90,6 @@ function reducer(state, action) {
           }
         };
       } else {
-        // return {
-        //   ...state,
-        //   search: success(null),
-        //   ...state.info,
-        //   searchList: [],
-        // }
         return {
           ...state,
           search: success(null)
