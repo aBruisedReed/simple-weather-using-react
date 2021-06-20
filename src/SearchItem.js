@@ -7,7 +7,8 @@ const SearchItemBlock = styled.div`
   font-weight: bold;
   width: 100%;
   margin-top: 10px;
-  color: ${props => IsDay()?props.theme.palette.main:props.theme.palette.mainNight}
+  color: ${props => IsDay()?props.theme.palette.main:props.theme.palette.mainNight};
+  cursor: pointer;
 `;
 
 function SearchItem({ full, location, lat, lon }) {

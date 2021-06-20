@@ -36,6 +36,7 @@ function Head() {
     getSearch(dispatch, e.target.value);
   }
   const onSearch = () => {
+    setInput('');
     dispatch({ type: 'SEARCH_TOGGLE' });
   }
   return (

@@ -38,12 +38,11 @@ function Main() {
   const state = useWeatherState();
   const dispatch = useWeatherDispatch();
   const themeContext = useContext(ThemeContext);
-  console.log(state);
   useEffect(() => {
     getCurrent(dispatch, state.info.lat, state.info.lon);
   }, [state.info.lat, state.info.lon, dispatch])
-  console.log(state);
-  const { searchToggle } = state.info;
+  const 
+  { searchToggle } = state.info;
   return (
     <MainBlock>
       { !searchToggle ? (

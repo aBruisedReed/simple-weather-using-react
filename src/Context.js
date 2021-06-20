@@ -46,7 +46,6 @@ const kelvinToCelsius = k => {
 };
 
 function reducer(state, action) {
-  console.log('action',action);
   switch(action.type) {
     case 'GET_CURRENT': 
       return {
@@ -123,7 +122,6 @@ function reducer(state, action) {
         }
       }
     case 'SELECT_PLACE':
-      console.log('selected location', action.location);
       return {
         ...state,
         info: {
