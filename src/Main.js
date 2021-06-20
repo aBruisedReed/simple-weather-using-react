@@ -1,13 +1,14 @@
-import React from 'react';
-import { FaCloudMoon } from 'react-icons/fa';
-import styled from 'styled-components';
+import React, { useEffect, useContext } from 'react';
+import styled, { ThemeContext } from 'styled-components';
 import SearchList from './SearchList';
+import { getCurrent, useWeatherState, useWeatherDispatch, IsDay } from './Context';
+import CurrentWeatherIcon from './CurrentWeatherIcon';
 
 const MainBlock = styled.div`
   width: 100%;
   height: 245px;
 
-  .wetherBox {
+  .weatherBox {
     height: 80px;
     width: 60px;
     display: flex;
@@ -19,26 +20,38 @@ const MainBlock = styled.div`
     margin: -40px 0 0 -30px;
   }
 
-  .wetherIcon {
-    color: ${props=>props.theme.palette.main};
+  .weatherIcon {
+    height: 60px;
+    width: 60px;
+    overflow: hidden;
   }
 
+  
   .degree {
     font-size: 20px;
     font-weight: 900;
-    color: ${props=>props.theme.palette.main};
+    color: ${props => IsDay()?props.theme.palette.main:props.theme.palette.mainNight}
   }
 `;
 
-function Main({ toggle }) {
+function Main() {
+  const state = useWeatherState();
+  const dispatch = useWeatherDispatch();
+  const themeContext = useContext(ThemeContext);
+  console.log(state);
+  useEffect(() => {
+    getCurrent(dispatch, state.info.lat, state.info.lon);
+  }, [state.info.lat, state.info.lon, dispatch])
+  console.log(state);
+  const { searchToggle } = state.info;
   return (
     <MainBlock>
-      { !toggle ? (
-        <div className="wetherBox">
-          <div className="wetherIcon">
-            <FaCloudMoon size={50}/>
+      { !searchToggle ? (
+        <div className="weatherBox">
+          <div className="weatherIcon">
+            <CurrentWeatherIcon size={55} color={IsDay()?themeContext.palette.main:themeContext.palette.mainNight} code={state.info.weatherCode}></CurrentWeatherIcon>
           </div>
-          <div className="degree">22°</div>
+          <div className="degree">{state.info.degree}°</div>
         </div>
       ) : (
         <SearchList></SearchList>

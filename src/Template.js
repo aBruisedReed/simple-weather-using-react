@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { IsDay } from './Context';
 
 const TemplateBlock = styled.div`
   width: 300px;
@@ -8,7 +9,7 @@ const TemplateBlock = styled.div`
   top: 50%;
   left: 50%;
   margin: -180px 0 0 -180px;
-  background: ${props => props.theme.palette.box};
+  background: ${props => IsDay()?props.theme.palette.box:props.theme.palette.boxNight};
   box-shadow: 2px 2px 8px 0 gray;
   display: flex;
   flex-direction: column;
