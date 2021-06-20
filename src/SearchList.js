@@ -25,7 +25,7 @@ function SeachList() {
   if(state.info.searchList.length === 0) {return null};
   return (
     <SeachListBlock>
-      {state.info.searchList.map(item => ( 
+      {state.info.searchList.map(item => (
         <SearchItem
           full={item.locationFull}
           location={item.location}

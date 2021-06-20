@@ -26,7 +26,6 @@ const MainBlock = styled.div`
     overflow: hidden;
   }
 
-  
   .degree {
     font-size: 20px;
     font-weight: 900;
@@ -41,16 +40,15 @@ function Main() {
   useEffect(() => {
     getCurrent(dispatch, state.info.lat, state.info.lon);
   }, [state.info.lat, state.info.lon, dispatch])
-  const 
-  { searchToggle } = state.info;
+  const { searchToggle } = state.info;
   return (
     <MainBlock>
       { !searchToggle ? (
         <div className="weatherBox">
           <div className="weatherIcon">
-            <CurrentWeatherIcon 
-              size={55} 
-              color={IsDay()?themeContext.palette.main:themeContext.palette.mainNight} 
+            <CurrentWeatherIcon
+              size={55}
+              color={IsDay()?themeContext.palette.main:themeContext.palette.mainNight}
               code={state.info.weatherCode}>
             </CurrentWeatherIcon>
           </div>

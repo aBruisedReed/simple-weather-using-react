@@ -45,7 +45,7 @@ function Head() {
         <div className="location">{state.info.location}</div> :
         <Input value={input} onChange={onChange} autoFocus placeholder="지역을 입력하세요."></Input>
       }
-      <div onClick={onSearch} style={{ cursor: 'pointer '}} className="searchIcon">        
+      <div onClick={onSearch} style={{ cursor: 'pointer '}} className="searchIcon">
         <ImSearch size={28}/>
       </div>
     </HeadBlock>

@@ -17,7 +17,7 @@ const TemplateBlock = styled.div`
 `;
 
 function Template({ children }) {
-  return ( 
+  return (
     <TemplateBlock>
       {children}
     </TemplateBlock>

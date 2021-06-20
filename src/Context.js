@@ -47,12 +47,12 @@ const kelvinToCelsius = k => {
 
 function reducer(state, action) {
   switch(action.type) {
-    case 'GET_CURRENT': 
+    case 'GET_CURRENT':
       return {
         ...state,
         current: loadingState
       };
-    case 'GET_CURRENT_SUCCESS': 
+    case 'GET_CURRENT_SUCCESS':
       return {
         ...state,
         current: success(action.data),
@@ -62,17 +62,17 @@ function reducer(state, action) {
           weatherCode: action.data.weather[0].icon
         }
       };
-    case 'GET_CURRENT_ERROR': 
+    case 'GET_CURRENT_ERROR':
       return {
         ...state,
         current: error(action.error)
       };
-    case 'GET_SEARCH': 
+    case 'GET_SEARCH':
       return {
         ...state,
         search: loadingState
       };
-    case 'GET_SEARCH_SUCCESS': 
+    case 'GET_SEARCH_SUCCESS':
       if(action.data.response.status === "OK") {
       const { features } = action.data.response.result.featureCollection;
         return {
@@ -81,7 +81,7 @@ function reducer(state, action) {
           info: {
             ...state.info,
             searchList: features.map(feature => {
-            return { 
+            return {
               locationFull: feature.properties.full_nm,
               location: feature.properties.sig_kor_nm,
               lat: feature.geometry.coordinates[0][0][0][1],
@@ -95,12 +95,12 @@ function reducer(state, action) {
           search: success(null)
         }
       }
-    case 'GET_SEARCH_ERROR': 
+    case 'GET_SEARCH_ERROR':
       return {
         ...state,
         search: error(action.error)
       };
-    case 'SET_INFO': 
+    case 'SET_INFO':
       return {
         ...state,
         info: {
@@ -127,7 +127,7 @@ function reducer(state, action) {
           searchList: []
         }
       }
-    default: 
+    default:
       throw new Error(`unhandled action type:${action.type}`);
   }
 }

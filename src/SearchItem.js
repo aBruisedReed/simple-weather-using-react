@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { IsDay, useWeatherState, useWeatherDispatch } from './Context';
+import { IsDay, useWeatherDispatch } from './Context';
 
 const SearchItemBlock = styled.div`
   font-size: 14px;
@@ -16,7 +16,7 @@ const dispatch = useWeatherDispatch();
 const onClick = () => {
   dispatch({ type: 'SELECT_PLACE', location: location, lat: lat, lon: lon })
 }
-return ( 
+return (
   <SearchItemBlock onClick={onClick}>{full}</SearchItemBlock>
   );
 }
