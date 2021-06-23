@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { IsDay } from './Context';
+import { IsDay, useWeatherState } from './Context';
 
 const TemplateBlock = styled.div`
   width: 300px;
@@ -9,7 +9,8 @@ const TemplateBlock = styled.div`
   top: 50%;
   left: 50%;
   margin: -180px 0 0 -180px;
-  background: ${props => IsDay()?props.theme.palette.box:props.theme.palette.boxNight};
+  background: ${props => 
+  IsDay()?props.theme.palette.box:props.theme.palette.boxNight};
   box-shadow: 2px 2px 8px 0 gray;
   display: flex;
   flex-direction: column;
@@ -17,6 +18,15 @@ const TemplateBlock = styled.div`
 `;
 
 function Template({ children }) {
+  const state = useWeatherState();
+  console.log('loading',state.current.loading);
+  // if(state.current.loading) {
+  //   console.log('call inside loader');
+  //   return (
+  //     <TemplateBlock>
+  //       <Loader type="TailSpin" color="white" height={100} width={100} timeout={3000} />
+  //     </TemplateBlock>
+  //   )}
   return (
     <TemplateBlock>
       {children}
@@ -24,4 +34,4 @@ function Template({ children }) {
   );
 }
 
-export default Template;
+export default React.memo(Template);

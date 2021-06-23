@@ -6,8 +6,8 @@ const initialState = {
     location: '서울시',
     lat: 36.387934,
     lon: 120.857758,
-    degree: 22,
-    weatherCode: '03d',
+    degree: 0,
+    weatherCode: '01d',
     searchToggle: false,
     searchList: [],
   },
@@ -42,10 +42,11 @@ const error = error => ({
 });
 
 const kelvinToCelsius = k => {
-  return k-273.15;
+  return Math.round(k-273.15);
 };
 
 function reducer(state, action) {
+  console.log('action.type', action.type);
   switch(action.type) {
     case 'GET_CURRENT':
       return {
@@ -58,7 +59,7 @@ function reducer(state, action) {
         current: success(action.data),
         info: {
           ...state.info,
-          degree: Math.round(kelvinToCelsius(action.data.main.temp)),
+          degree:kelvinToCelsius(action.data.main.temp),
           weatherCode: action.data.weather[0].icon
         }
       };
@@ -153,6 +154,7 @@ export function useWeatherState() {
   }
   return state;
 }
+// test
 
 export function useWeatherDispatch() {
   const dispatch = useContext(DispatchContext);
@@ -163,7 +165,7 @@ export function useWeatherDispatch() {
 }
 
 export async function getCurrent(dispatch, lat, lon) {
-  dispatch({ type: 'GET_CURRENT' });
+    dispatch({ type: 'GET_CURRENT' });
   try {
     const response = await axios.get(
       `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=3a78a9a70b98f5070d1a00754090e742`
@@ -179,7 +181,6 @@ export async function getSearch(dispatch, keyword) {
   try {
     const response = await axios.get(
       `/req/data?service=data&request=GetFeature&data=LT_C_ADSIGG_INFO&key=348512EB-482A-38CE-9F8C-747076EBE06E&domain=http://localhost:3000/&attrFilter=sig_kor_nm:like:${keyword}&geometry=true`
-
     );
     dispatch({ type: 'GET_SEARCH_SUCCESS', data: response.data });
   } catch(e) {
